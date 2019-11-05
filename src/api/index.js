@@ -21,17 +21,21 @@ var getSwiperData =()=>{
 }
 
 // 详情页数据
-var getDetailData =(id)=>{
-  return request.get(`/gateway?filmId=4680&k=6399396`,{
+var getDetailData =(id,key)=>{
+  return request.get(`/gateway?filmId=${id}&k=${key}`,{
     data:{
       'X-Host':"mall.film-ticket.film.info"
-    },
-    params: {
-      movieId: id
-  }
+    }
   })
 }
 
+var getCityData =()=>{
+  return request.get(`/gateway?k=4194652`,{
+    data:{
+      'X-Host':"mall.film-ticket.city.list"
+    }
+  })
+}
 
 
 

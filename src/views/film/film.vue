@@ -28,6 +28,7 @@ export default {};
   list-style: none;
 }
 .op {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
 }

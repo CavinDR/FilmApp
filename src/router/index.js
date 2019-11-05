@@ -6,6 +6,8 @@ import News from "@/views/news/news.vue"
 import User from "@/views/user/user.vue"
 import Home from "@/views/home/home.vue"
 import FilmList from "@/views/film/filmlist.vue"
+import Detail from "@/components/Detail.vue"
+import DetailIMG from "@/components/DetailIMG.vue"
 
 Vue.use(VueRouter)
 
@@ -43,7 +45,7 @@ const routes = [{
             meta: {
               flag: true
             }
-
+            
           }
 
         ]
@@ -53,6 +55,22 @@ const routes = [{
     ]
   },
 
+  {
+    path: '/Detail/:id',
+    name: 'Detail',
+    component: Detail,
+    meta:{
+      flag:false
+    }
+  },
+  {
+    path: '/DetailIMG/:id',
+    name: 'DetailIMG',
+    component : DetailIMG,
+    // meta:{
+    //   flag:false
+    // }
+  },
 
 
 

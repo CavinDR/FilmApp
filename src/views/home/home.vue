@@ -23,6 +23,8 @@ export default {
     // console.log(1111);
     getSwiperData().then(res => {
       this.list = res.data.data;
+      // console.log(res);
+      
     });
   },
   methods: {

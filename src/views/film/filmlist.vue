@@ -3,9 +3,9 @@
     v-infinite-scroll="loadMore"
     infinite-scroll-disabled="loading"
     infinite-scroll-distance="10"
-    class="listOut"
+
   >
-    <li v-for="item in list" :key="item.filmId">
+    <li v-for="item in list" :key="item.filmId" @click="go(item.filmId)">
       <div class="listImg">
         <img :src="item.poster" width="66px" height="97.53px" />
       </div>
@@ -45,6 +45,8 @@
 <script>
 import { Toast } from "mint-ui";
 import { getMovieList } from "@/api";
+
+import Detail from "@/components/Detail"
 export default {
   data() {
     return {
@@ -88,10 +90,13 @@ export default {
         return;
       }
       this.loading = true;
+
       getMovieList(type, page).then(res => {
         this.list = this.list.concat(res.data.data.films);
         this.total = res.data.data.total;
         this.loading = false;
+        // console.log(res);
+        
       });
     },
     // 重置列表
@@ -99,22 +104,31 @@ export default {
       this.page = 1;
       this.loading = false;
       this.list = [];
+    },
+
+    go(id) {
+      console.log(id);
+      
+      this.$router.push("/Detail/" + id);
     }
+  
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.listOut {
+ ul{
   list-style: none;
   padding: 0;
   margin-left: 15px;
   margin-bottom: 0;
   margin-top: 0;
-  li {
+  overflow: hidden;
+    li {
     float: left;
     width: 100%;
     padding: 15px 15px 15px 0;
+
     .listImg {
       float: left;
       width: 66px;
@@ -122,7 +136,7 @@ export default {
     }
     .listRight {
       width: 229px;
-      height: 81px;
+      height: 114px;
       // background-color: rebeccapurple;
       float: left;
       #titleName {
@@ -140,7 +154,7 @@ export default {
         border-radius: 2px;
       }
       div {
-        height: 17px;
+        height: 19px;
         padding-left: 11px;
         overflow: hidden;
         margin-top: 6px;
@@ -148,6 +162,7 @@ export default {
           font-size: 13px;
           color: #797d82;
           margin-right: 3px;
+          overflow: hidden;
         }
         #actor {
           display: inline-block;
@@ -159,6 +174,7 @@ export default {
       }
     }
     .rightMax {
+      overflow: hidden;
       float: left;
       div {
         width: 50px;
@@ -178,10 +194,10 @@ export default {
           color: #ff5f16;
           font-size: 13px;
           text-align: center;
-          position: relative;
         }
       }
     }
   }
-}
+ }
+
 </style>
