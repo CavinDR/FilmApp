@@ -16,7 +16,7 @@
       </router-link>
     </li>
     <li>
-      <router-link to="/user" id="homie">
+      <router-link to="/userCenter" id="homie">
        <p class="iconfont" id="homepage">&#xe636;</p>我的
       </router-link>
     </li>
@@ -26,12 +26,7 @@
 <script>
 import { getMovieList } from "@/api";
 export default {
-  created() {
-    getMovieList().then(res => {
-      console.log(res);
-      // this.list = res.data.data.films
-    });
-  }
+
 };
 </script>
 

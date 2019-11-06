@@ -54,7 +54,7 @@
         <div class="photos">
           <div class="photos-title-bar">
             <span>剧照</span>
-            <span class="iconfont">全部({{obj.photos.length}})&#xe705;</span>
+            <span class="iconfont"  @click="goImg(item)">全部({{obj.photos.length}})&#xe705;</span>
           </div>
 
           <ul v-if="obj.photos!=undefined&&obj.photos.length>0">
@@ -68,9 +68,10 @@
       </div>
     </div>
 
-    <div class="ticket" @click="goImg(item)">
+    <div class="ticket" >
       <span >选座购票</span>
     </div>
+    
   </div>
 </template>
 

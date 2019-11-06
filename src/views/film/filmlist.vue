@@ -77,7 +77,6 @@ export default {
 
   methods: {
     loadMore() {
-      // console.log("loadMore...");
       this.page++;
       this.getData(this.type, this.page);
     },
@@ -95,7 +94,7 @@ export default {
         this.list = this.list.concat(res.data.data.films);
         this.total = res.data.data.total;
         this.loading = false;
-        // console.log(res);
+        console.log(res);
         
       });
     },

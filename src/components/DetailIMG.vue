@@ -7,7 +7,6 @@
             <span class="iconfont"><span>(</span>{{obj.photos.length}}<span>)</span></span>
           </div>
     </div>
-    <div >hello</div>
     <li v-for="(item,index) in obj.photos" :key="index" class="scroll">
       <div>
         <img :src="item" />

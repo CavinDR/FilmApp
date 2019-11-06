@@ -12,6 +12,7 @@
 import MySwiper from "@/components/myswiper";
 import { getSwiperData } from "@/api";
 import location from "@/module/getLocation";
+import locationCity from "@/components/locationCity"
 
 export default {
   data() {
@@ -29,9 +30,10 @@ export default {
   },
   methods: {
     pos() {
-      location(city => {
-        alert(city);
-      });
+      this.$router.push("/locationCity")
+      // location(city => {
+      //   // alert(city);
+      // });
     }
   },
   components: {

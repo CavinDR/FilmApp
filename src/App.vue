@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    
     <router-view/>
      <Bus v-if="flag" />
   </div>
@@ -28,7 +27,8 @@ export default {
   
 }
 </script>
-<style lang="scss">
+<style>
 @import "~@/assets/reset.css";
+@import "~@/assets/animate.css";
 
 </style>
