@@ -4,7 +4,7 @@
     <div id="out">
       <ul v-for="item in list" :key="item.cinemaId" >
 
-        <li @click="goDetail(item.cityId)">
+        <li @click="goDetail(item.cinemaId)">
           <div class="cinema-info-lf">
             <span class="cinema-name">{{item.name}}</span>
             <div>
@@ -27,7 +27,7 @@
 
 <script>
 import { getCinemaListData } from "@/api";
-import { Toast } from "mint-ui";
+// import { Toast } from "mint-ui";
 export default {
   data() {
     return {

@@ -9,11 +9,10 @@ import FilmList from "@/views/film/filmlist.vue"
 import Detail from "@/components/Detail.vue"
 import DetailIMG from "@/components/DetailIMG.vue"
 import  LocationCity from "@/components/locationCity.vue"
-
 import Cinema from "@/views/cinema/cinema.vue"
 import CinemaList from "@/views/cinema/cinemaList.vue"
 import CinemaDetail from "@/views/cinema/cinemaDetail.vue"
-
+import Login from "@/views/user/components/login.vue"
 Vue.use(VueRouter)
 
 const routes = [{
@@ -122,6 +121,11 @@ const routes = [{
   {
     path: '/setUp',
     component: SetUp,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    components: Login
   }
 ]
 

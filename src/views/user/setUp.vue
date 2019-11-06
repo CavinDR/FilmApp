@@ -22,7 +22,7 @@
           <div class="item-box">
             <div class="common">
               <span class="label">账号ID</span>
-              <span class="text" style="color: rgb(121, 125, 130);">211875856</span>
+              <span class="text" style="color: rgb(121, 125, 130);" v-if="$store.state.username">{{$store.state.username}}</span>
             </div>
           </div>
           <div class="item-box">
@@ -73,7 +73,7 @@
               <span class="text">0.1 KB</span>
             </div>
           </div>
-          <div class="logout-btn" @click="userout">退出登录</div>
+          <div class="logout-btn" @click="userout" >退出登录</div>
         </div>
         <!---->
       </div>
@@ -182,36 +182,36 @@
 </style>
 
 <script>
-// import Cookies from 'js-cookie'
-// import { mapMutations } from 'vuex'
+import Cookies from 'js-cookie'
+import { mapMutations } from 'vuex'
 export default {
-  //   data () {
-  //     return {
-  //       show: false,
-  //       actions: [
-  //         {
-  //           name: '退出',
-  //           color: '#ff5f16'
-  //         },
-  //       ]
-  //     }
-  //   },
+    data () {
+      return {
+        show: false,
+        actions: [
+          {
+            name: '退出',
+            color: '#ff5f16'
+          },
+        ]
+      }
+    },
   methods: {
-    //     ...mapMutations(['settoken', 'setusername', 'setuserimg']),
-    //     userout () {
-    //       this.show = true
-    //     },
-    //     onSelect (item) {
-    //       // 点击选项时默认不会关闭菜单，可以手动关闭
-    //       Cookies.remove('token')
-    //       Cookies.remove('username')
-    //       Cookies.remove('userimg')
-    //       this.settoken('')
-    //       this.setusername('')
-    //       this.setuserimg('')
-    //       this.show = false
-    //       this.$router.push('/center')
-    //     },
+        ...mapMutations(['settoken', 'setusername', 'setuserimg']),
+        userout () {
+          this.show = true
+        },
+        onSelect (item) {
+          // 点击选项时默认不会关闭菜单，可以手动关闭
+          Cookies.remove('token')
+          Cookies.remove('username')
+          Cookies.remove('userimg')
+          this.settoken('')
+          this.setusername('')
+          this.setuserimg('')
+          this.show = false
+          this.$router.push('/center')
+        },
     backbut() {
       this.$router.back(-1);
     }

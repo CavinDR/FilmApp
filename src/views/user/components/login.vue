@@ -48,7 +48,85 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<script>
+import { getcode, logincode } from '@/api/login'
+import Cookies from 'js-cookie'
+import { mapMutations } from 'vuex'
+export default {
+  data () {
+    return {
+      telcode: '',
+      code: '',
+      errdata: '',
+      errcode: ''
+
+    }
+  },
+  methods: {
+    ...mapMutations(['settoken']),
+    //验证码
+    sendcode () {
+
+      let num = Number(this.telcode)
+      getcode({ tel: num }).then(res => {
+        console.log(this.$toast);
+        console.log(res);
+        if (res.status == 0) {
+          this.errcode = ''
+          //弹出框
+          const toast = this.$toast.loading({
+            duration: 0,       // 持续展示 toast
+            forbidClick: true, // 禁用背景点击
+            loadingType: 'spinner',
+            message: '验证码发送成功'
+          });
+
+          let second = 1;
+
+          const timer = setInterval(() => {
+            second--;
+            if (second) {
+              this.$toast.message = `倒计时 ${second} 秒`;
+            } else {
+              clearInterval(timer);
+              this.$toast.clear();
+            }
+          }, 1000);
+          //---------------
+        }
+        else {
+          this.errcode = res.msg
+        }
+      })
+    },
+    //登录
+    loginuser () {
+      let _this = this
+      let codenum = this.code
+      let telnum = Number(this.telcode)
+      console.log(codenum);
+      logincode({ tel: telnum, code: codenum }).then(res => {
+        console.log(res);
+        if (res.status == 0) {
+          Cookies.set('token', res.data.token, { expires: 7, path: '' })
+          this.settoken(res.data.token)
+          this.errdata = ''
+          _this.$router.push("/center")
+        }
+        else {
+          console.log(res.msg);
+          this.errdata = res.msg
+        }
+
+      })
+    },
+
+  },
+}
+</script>
+
+
+<style lang="scss" scoped>
 #app {
   font-size: 0.4rem;
   img {
@@ -127,79 +205,3 @@
 }
 </style>
 
-<script>
-// import { getcode, logincode } from '@/api/login'
-// import Cookies from 'js-cookie'
-// import { mapMutations } from 'vuex'
-// export default {
-//   data () {
-//     return {
-//       telcode: '',
-//       code: '',
-//       errdata: '',
-//       errcode: ''
-
-//     }
-//   },
-//   methods: {
-//     ...mapMutations(['settoken']),
-//     //验证码
-//     sendcode () {
-
-//       let num = Number(this.telcode)
-//       getcode({ tel: num }).then(res => {
-//         console.log(this.$toast);
-//         console.log(res);
-//         if (res.status == 0) {
-//           this.errcode = ''
-//           //弹出框
-//           const toast = this.$toast.loading({
-//             duration: 0,       // 持续展示 toast
-//             forbidClick: true, // 禁用背景点击
-//             loadingType: 'spinner',
-//             message: '验证码发送成功'
-//           });
-
-//           let second = 1;
-
-//           const timer = setInterval(() => {
-//             second--;
-//             if (second) {
-//               this.$toast.message = `倒计时 ${second} 秒`;
-//             } else {
-//               clearInterval(timer);
-//               this.$toast.clear();
-//             }
-//           }, 1000);
-//           //---------------
-//         }
-//         else {
-//           this.errcode = res.msg
-//         }
-//       })
-//     },
-//     //登录
-//     loginuser () {
-//       let _this = this
-//       let codenum = this.code
-//       let telnum = Number(this.telcode)
-//       console.log(codenum);
-//       logincode({ tel: telnum, code: codenum }).then(res => {
-//         console.log(res);
-//         if (res.status == 0) {
-//           Cookies.set('token', res.data.token, { expires: 7, path: '' })
-//           this.settoken(res.data.token)
-//           this.errdata = ''
-//           _this.$router.push("/center")
-//         }
-//         else {
-//           console.log(res.msg);
-//           this.errdata = res.msg
-//         }
-
-//       })
-//     },
-
-//   },
-// }
-</script>
