@@ -1,11 +1,9 @@
 <template>
   <div class="main">
     <div class="cinema-schedule" v-for="(item,index) in obj" :key="index">
-      <div class="header-left">
-        <router-link to="/cinema">
-          <span></span>
-        </router-link>
-      </div>
+     <div class="header-left">
+      <span class="iconfont leftfont" @click="goback">&#xe502;</span>
+    </div>
       <div class="header-title">{{item.name}}</div>
       <div class="cinema-wrap">
         <div class="cinema-info">
@@ -216,12 +214,29 @@ export default {
       // console.log(index);
       this.dateIndex = index;
       getCinemaDetailSecondData(this.dateIndex);
+    },
+     goback() {
+      this.$router.go(-1);
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
+.header-left {
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
+  display: flex;
+  padding-left: 15px;
+  align-items: center;
+  justify-content: left;
+
+  .leftfont {
+    font-size: 44px;
+    margin-left: -14px;
+  }
+}
 .tabs-bar-wrapper {
   position: relative;
   z-index: 100;

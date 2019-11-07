@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="header"></div>
         <ul>
             <li v-for="(item,index) in list" :key="item.name" @click="go(item)">
                 <h3 v-if="index===0 || index!==0 && item.letter !==list[index-1].letter "  @click="go">{{item.name}}</h3>
@@ -29,9 +30,7 @@ export default {
                     "cityId":item.cityId
                 }
             })
-
             // console.log(this.list);
-            
         })
     },
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-    asdasd
     <div id="out">
       <ul v-for="item in list" :key="item.cinemaId" >
 
@@ -42,7 +41,7 @@ export default {
       handler(n, o) {
         var id = n.params.id;
         var cityId = JSON.parse(localStorage.getItem("city")).cityId;
-        console.log(cityId);
+        // console.log(cityId);
         var key = new Date().getTime();
         this.getCinemaData(cityId, key);
       },
@@ -56,7 +55,7 @@ export default {
     getCinemaData(cityId, key) {
       getCinemaListData(cityId, key).then(res => {
         this.list = res.data.data.cinemas;
-        console.log(this.list);
+        // console.log(this.list);
       });
     },
     
@@ -69,7 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 #out {
-  padding-top: 70px;
+  padding-top: 88px;
 }
 ul {
   width: 100%;
